@@ -28,7 +28,6 @@ Users should be able to:
 ### Screenshot
 
 ![Desktop-view](finished/desktop.png)
-![Mobile-view](finished/mobile.png)
 
 ### Links
 
