@@ -1,0 +1,31 @@
+@use "./variables" as var;
+
+@mixin hover-line-effect {
+  position: relative;
+
+  &::after {
+    content: "";
+    background-color: var.$white;
+    bottom: -1rem;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    transform-origin: center;
+    transform: translateX(-50%);
+    transition: width .35s ease;
+    width: 0;
+  }
+
+  &:hover {
+
+    &::after {
+      width: 100%
+    }
+  }
+}
+
+@mixin flex-between {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}

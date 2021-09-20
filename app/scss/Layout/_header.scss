@@ -1,0 +1,101 @@
+@use "../Abstract/extension";
+@use "../Abstract/functions" as func;
+@use "../Abstract/variables" as var;
+@use "../Abstract/mixins" as mix;
+
+.header {
+  padding: func.fluid(40, 5vw, 64) func.fluid(24, 12vw, 164) 0;
+ 
+  &__container {
+    @include mix.flex-between;
+    @extend %z-relative;
+ }
+
+  &__logo {
+    @extend %z-relative;
+
+    img {
+      height: func.fluid(24, 4vw, 32);
+      width: func.fluid(144, 15vw, 192)
+    }
+  }
+}
+
+.navbar {
+  $root: &;
+
+  &__menu-toggle {
+    @extend %z-relative;
+    background: url("../images/icon-hamburger.svg")no-repeat center center ;
+    background-size: cover;
+    height: func.rem(16);
+    width: func.rem(24);
+
+    &[aria-expanded="true"] {
+      background-image: url("../images/icon-close.svg");
+
+      +#{$root}__dropdown {
+        left: 0;
+        visibility: visible;
+      }
+    }
+  }
+
+  &__dropdown {
+    background-color: var.$black;
+    font-size: func.rem(24);
+    left: -100%;
+    min-height: 100vh;
+    padding: func.rem(224) func.rem(24) 0;
+    position: absolute;
+    text-transform: uppercase;
+    transition: left .35s ease,
+                visibility .35s ease;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  &__link {
+    margin-bottom: func.rem(24);
+
+    a {
+      color: var.$white;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+  }
+}
+
+@media (min-width: 50em) {
+
+  .navbar {
+
+    &__menu-toggle {
+      display: none;
+    }
+
+    &__dropdown {
+      align-items: center;
+      background: none;
+      display: flex;
+      font-size: func.rem(15);
+      gap: 0 func.rem(32);
+      height: auto;
+      min-height: auto;
+      padding: 0;
+      position: static;
+      text-transform: capitalize;
+      visibility: visible;
+    }
+
+    &__link {
+      margin-bottom: 0;
+      
+      a {
+        @include mix.hover-line-effect;
+        font-family: 'Alata', sans-serif;
+        position: relative;
+      }
+    }
+  }
+}
