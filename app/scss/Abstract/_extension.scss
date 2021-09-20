@@ -1,0 +1,6 @@
+@use "./functions" as func;
+
+%z-relative {
+  position: relative;
+  z-index: 10;
+}
